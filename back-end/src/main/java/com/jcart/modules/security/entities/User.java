@@ -1,7 +1,5 @@
 package com.jcart.modules.security.entities;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +11,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -34,6 +35,6 @@ public class User
 	      name="user_role",
 	      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
 	      inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
-	private List<Role> roles;
+	private Set<Role> roles = new HashSet<>();
 
 }

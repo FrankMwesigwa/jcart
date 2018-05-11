@@ -2,7 +2,6 @@ package com.jcart.modules.security.service;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.jcart.modules.security.entities.Permission;
@@ -45,12 +44,12 @@ public class AuthenticatedUser implements UserDetails {
 	private static Collection<? extends GrantedAuthority> getAuthorities(User user)
 	{
 		Set<String> roleAndPermissions = new HashSet<>();
-		List<Role> roles = user.getRoles();
+        Set<Role> roles = user.getRoles();
 		
 		for (Role role : roles)
 		{
 			roleAndPermissions.add(role.getName());
-			List<Permission> permissions = role.getPermissions();
+			Set<Permission> permissions = role.getPermissions();
 			for (Permission permission : permissions)
 			{
 				roleAndPermissions.add("ROLE_"+permission.getName());

@@ -1,0 +1,9 @@
+INSERT INTO permissions (id, name) VALUES (1, 'MANAGE_CATEGORIES');
+INSERT INTO permissions (id, name) VALUES (2, 'MANAGE_PRODUCTS');
+INSERT INTO permissions (id, name) VALUES (3, 'MANAGE_ORDERS');
+INSERT INTO permissions (id, name) VALUES (4, 'MANAGE_CUSTOMERS');
+INSERT INTO permissions (id, name) VALUES (5, 'MANAGE_PAYMENT_SYSTEMS');
+INSERT INTO permissions (id, name) VALUES (6, 'MANAGE_USERS');
+INSERT INTO permissions (id, name) VALUES (7, 'MANAGE_ROLES');
+INSERT INTO permissions (id, name) VALUES (8, 'MANAGE_PERMISSIONS');
+INSERT INTO permissions (id, name) VALUES (9, 'MANAGE_SETTINGS');

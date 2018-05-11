@@ -1,6 +1,6 @@
 package com.jcart.modules.security.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,9 +30,7 @@ public class Role
 	      name="role_permission",
 	      joinColumns={@JoinColumn(name="role_id", referencedColumnName="id")},
 	      inverseJoinColumns={@JoinColumn(name="perm_id", referencedColumnName="id")})
-	  private List<Permission> permissions;
+	  private Set<Permission> permissions;
 
-
-	
 	
 }

@@ -1,4 +1,4 @@
-package com.jcart.modules.utities;
+package com.jcart.modules.utilities;
 
 import lombok.Data;
 
