@@ -8,85 +8,40 @@ class SideBar extends Component {
   
     return (
 
-      <section class="sidebar">
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-        </div>
-        <div class="pull-left info">
-          <p></p>
-          <a href=""><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+      <aside class="main-sidebar">
+        <section class="sidebar">
 
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search..."/>
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="/assets/dist/img/user.png" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+              <p><span>Frank Mwesigwa</span></p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
 
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Main Navigation</li>
-        
-        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-pie-chart"></i> <span>Batch</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><Link to="/batch"><i className="fa fa-circle-o"></i>Manage Batch</Link></li>
-            <li><Link to="/addbatch"><i className="fa fa-circle-o"></i>Add Batch</Link></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Batch Reports</a></li>
-          </ul>
-        </li>
+            </div>
+          </form>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-table"></i> <span>Accounts</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Manage Accounts</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Manage Accounts</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Accounts Reports</a></li>
+          <ul class="sidebar-menu">
+            <li><a href="#" href="'/home'"><i class="fa fa-home"></i> <span>Home</span></a></li>
+            <li><a href="#" href="'/categories'"><i class="fa fa-folder-open"></i> <span>Categories</span></a></li>
+            <li><a href="#" href="'/products'"><i class="fa fa-file"></i> <span>Products</span></a></li>
+            <li><a href="#" href="'/orders'"><i class="fa fa-cart-arrow-down"></i> <span>Orders</span></a></li>
+            <li><a href="#" href="'/customers'"><i class="fa fa-smile-o"></i> <span>Customers</span></a></li>
+            <li><a href="#" href="'/users'"><i class="fa fa-users"></i> Users</a></li>
+            <li><a href="#" href="'/roles'"><i class="fa fa-user"></i> Roles</a></li>
+            <li><a href="#" href="'/permissions'"><i class="fa fa-shield"></i> Permissions</a></li>         
           </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-calendar"></i> <span>Tracker</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i>Manage Tracker</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Tracker Reports</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-gears"></i> <span>System Masters</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><Link to="/user"><i className="fa fa-circle-o"></i>Manage Users</Link></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>View Tracker</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>Tracker Reports</a></li>
-          </ul>
-        </li>
-
-      </ul>
-    
-    </section>
+        </section>
+      </aside>
     )
   }
 }

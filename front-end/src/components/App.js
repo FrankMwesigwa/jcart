@@ -10,35 +10,32 @@ class App extends Component {
   render() {
     return (
       <body class="hold-transition skin-blue sidebar-mini">
-      <div class="wrapper">
-      <Header />
-      <aside class="main-sidebar">
-        <SideBar />
-      </aside>
-      <div class="content-wrapper">
-        <Switch>
-          <Route exact path="/home"  component={Dashboard}/>
-          <Redirect from="/" to="/home"/>
-        </Switch>
-      </div>
-      
+        <div class="wrapper">
+          <Header />
+          <aside class="main-sidebar">
+            <SideBar />
+          </aside>
 
-<footer class="main-footer">
-<div class="pull-right hidden-xs">
-  <b>Version</b> 1.1.0
-</div>
-<strong>Copyright &copy; 2018 <a href="">Housing Finance Bank</a>.</strong> All rights
-reserved.
-</footer> 
+          <div class="content-wrapper">
+            <Switch>
+              <Route exact path="/home"  component={Dashboard}/>
+              <Redirect from="/" to="/home"/>
+            </Switch>
+          </div>
+    
+          <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+              <b>Version</b> 1.1.0
+            </div>
+              <strong>Copyright &copy; 2018 <a href="">Housing Finance Bank</a>.</strong> All rights reserved.
+          </footer> 
  
-  </div>
+        </div>
       </body>
       
     );
   }
 }
-
-
 
 export default App;
 

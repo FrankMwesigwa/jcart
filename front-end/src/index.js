@@ -8,6 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import reducers from './reducers/index';
 import App from './components/App';
+import Login from './components/auth/Login';
 
 const history = createHistory();   
 
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Router history={history}>
         <div>
                 <Switch>
+                    <Route exact path="/login" component={Login}/>
                     <Route path="/" component={App} />
                 </Switch>
             </div>    
