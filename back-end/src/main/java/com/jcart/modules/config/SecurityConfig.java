@@ -2,7 +2,7 @@ package com.jcart.modules.config;
 
 import com.jcart.modules.security.jwt.JwtAuthenticationEntryPoint;
 import com.jcart.modules.security.jwt.JwtAuthenticationFilter;
-import com.jcart.modules.security.service.CustomUserDetailsService;
+import com.jcart.modules.security.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

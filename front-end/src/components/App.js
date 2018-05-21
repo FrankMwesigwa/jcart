@@ -5,6 +5,14 @@ import Header from './layout/Header';
 import SideBar from './layout/SideBar';
 import Dashboard from './layout/Dashboard';
 
+import PermissionList from './security/permissions/PermissionList';
+
+import RolesList from './security/roles/RolesList';
+import CreateRole from './security/roles/CreateRole';
+
+import UsersList from './security/users/UsersList';
+import CreateUser from './security/users/CreateUser';
+
 class App extends Component {
 
   render() {
@@ -12,13 +20,16 @@ class App extends Component {
       <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
           <Header />
-          <aside class="main-sidebar">
-            <SideBar />
-          </aside>
-
+          <SideBar />
+          
           <div class="content-wrapper">
             <Switch>
               <Route exact path="/home"  component={Dashboard}/>
+              <Route exact path="/permissions"  component={PermissionList}/>
+              <Route exact path="/roles/new"  component={CreateRole}/>
+              <Route exact path="/users/new"  component={CreateUser}/>
+              <Route exact path="/roles"  component={RolesList}/>
+              <Route exact path="/users"  component={UsersList}/>
               <Redirect from="/" to="/home"/>
             </Switch>
           </div>

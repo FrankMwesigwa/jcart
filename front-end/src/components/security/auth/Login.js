@@ -1,11 +1,26 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
 import { connect } from 'react-redux'
+import {Field, reduxForm} from 'redux-form';
+import {logInAction} from '../../../actions/AuthActions'
 
 class Login extends Component {
 
+  submit = (values) => {
+    this.props.dispatch(logInAction(values, this.props.history));
+  }
+
+  errorMessage() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="error-message">
+          <p>{this.props.errorMessage}</p>
+        </div>
+      );
+    }
+  }
 
   render() {
+    const {handleSubmit} = this.props;
     
     return (
       <body class="hold-transition login-page">
@@ -16,13 +31,15 @@ class Login extends Component {
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         
-        <form action="home" method="post">
+        <form onSubmit={handleSubmit(this.submit.bind(this))}>
+        {this.errorMessage()}
+
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" name="username" placeholder="Email"/>
+            <Field name="email" className="form-control" component="input" type="text" placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" name="password" placeholder="Password"/>
+            <Field name="password" className="form-control" component="input" type="password" placeholder="Password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -41,5 +58,11 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { 
+    errorMessage: state.auth.error 
+  };
+}
+
 const reduxFormLogin = reduxForm({form: 'login'})(Login);
-export default connect(null)(reduxFormLogin);
+export default connect(mapStateToProps)(reduxFormLogin);

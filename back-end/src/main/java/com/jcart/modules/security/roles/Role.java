@@ -1,4 +1,4 @@
-package com.jcart.modules.security.entities;
+package com.jcart.modules.security.roles;
 
 import java.util.Set;
 
@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.jcart.modules.security.permissions.Permission;
 
 import lombok.Data;
 

@@ -1,12 +1,12 @@
-package com.jcart.modules.security.service;
+package com.jcart.modules.security.auth;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.jcart.modules.security.entities.Permission;
-import com.jcart.modules.security.entities.Role;
-import com.jcart.modules.security.entities.User;
+import com.jcart.modules.security.permissions.Permission;
+import com.jcart.modules.security.roles.Role;
+import com.jcart.modules.security.users.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

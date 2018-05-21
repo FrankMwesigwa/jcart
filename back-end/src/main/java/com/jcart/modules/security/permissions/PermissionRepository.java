@@ -1,6 +1,5 @@
-package com.jcart.modules.security.repository;
+package com.jcart.modules.security.permissions;
 
-import com.jcart.modules.security.entities.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

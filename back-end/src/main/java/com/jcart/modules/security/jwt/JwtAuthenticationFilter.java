@@ -1,6 +1,6 @@
 package com.jcart.modules.security.jwt;
 
-import com.jcart.modules.security.service.CustomUserDetailsService;
+import com.jcart.modules.security.auth.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

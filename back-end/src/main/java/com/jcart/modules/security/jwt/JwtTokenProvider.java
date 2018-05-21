@@ -1,6 +1,6 @@
 package com.jcart.modules.security.jwt;
 
-import com.jcart.modules.security.service.AuthenticatedUser;
+import com.jcart.modules.security.auth.AuthenticatedUser;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

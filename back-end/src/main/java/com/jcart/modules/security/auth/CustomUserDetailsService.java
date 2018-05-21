@@ -1,7 +1,7 @@
-package com.jcart.modules.security.service;
+package com.jcart.modules.security.auth;
 
-import com.jcart.modules.security.entities.User;
-import com.jcart.modules.security.repository.UserRepository;
+import com.jcart.modules.security.users.User;
+import com.jcart.modules.security.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

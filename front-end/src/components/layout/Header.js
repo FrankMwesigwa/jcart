@@ -40,7 +40,7 @@ class Header extends Component {
                   <a href="#" href="{/myAccount}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="logout" href="{/logout}" class="btn btn-default btn-flat">Sign out</a>
+                  <button className="btn btn-default btn-flat" ><Link to="/logout">Log out</Link></button>
                 </div>
               </li>
             </ul>

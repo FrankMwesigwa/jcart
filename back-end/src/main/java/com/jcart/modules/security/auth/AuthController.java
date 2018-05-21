@@ -1,6 +1,6 @@
-package com.jcart.modules.security.controller;
+package com.jcart.modules.security.auth;
 
-import com.jcart.modules.security.entities.User;
+import com.jcart.modules.security.users.User;
 import com.jcart.modules.security.jwt.JwtResponse;
 import com.jcart.modules.security.jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;

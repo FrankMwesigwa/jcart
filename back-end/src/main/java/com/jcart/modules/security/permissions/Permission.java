@@ -1,4 +1,4 @@
-package com.jcart.modules.security.entities;
+package com.jcart.modules.security.permissions;
 
 import lombok.Data;
 

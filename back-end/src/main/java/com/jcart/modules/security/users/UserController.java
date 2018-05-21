@@ -1,11 +1,8 @@
-package com.jcart.modules.security.controller;
+package com.jcart.modules.security.users;
 
 import com.jcart.modules.exceptions.JCartException;
-import com.jcart.modules.security.entities.Role;
-import com.jcart.modules.security.entities.User;
-import com.jcart.modules.security.entities.UserDTO;
-import com.jcart.modules.security.repository.RoleRepository;
-import com.jcart.modules.security.repository.UserRepository;
+import com.jcart.modules.security.roles.Role;
+import com.jcart.modules.security.roles.RoleRepository;
 import com.jcart.modules.utilities.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

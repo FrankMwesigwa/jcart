@@ -1,11 +1,6 @@
-package com.jcart.modules.security.controller;
+package com.jcart.modules.security.permissions;
 
-import com.jcart.modules.security.entities.Permission;
-import com.jcart.modules.security.repository.PermissionRepository;
-import com.jcart.modules.utilities.SecurityUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -14,22 +9,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@Secured(SecurityUtil.MANAGE_PERMISSIONS)
 public class PermissionController {
 
-    @Autowired
-    PermissionRepository permRepository;
+    private PermissionRepository permRepository;
+
+    public PermissionController(PermissionRepository permRepository) {
+        this.permRepository = permRepository;
+    }
 
     @GetMapping("/permissions")
     public List<Permission> getPermissions() {
-
         return permRepository.findAll();
     }
 
     @GetMapping("/permissions/{id}")
     public Permission getPermission(@PathVariable long id) {
         Optional<Permission> permission = permRepository.findById(id);
-
         return permission.get();
     }
 
