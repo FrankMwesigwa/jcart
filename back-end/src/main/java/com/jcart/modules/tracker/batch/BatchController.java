@@ -15,7 +15,7 @@ public class BatchController {
     }
 
     @GetMapping("/batch")
-    public List<Batch> getAllEmployees() {
+    public List<Batch> getAll() {
         return batchRepository.findAll();
     }
 

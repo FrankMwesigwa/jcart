@@ -32,7 +32,7 @@ class SideBar extends Component {
 
           <ul class="sidebar-menu">
             <li><Link to="/home"><i class="fa fa-home"></i> <span>Home</span></Link></li>
-            <li><a href="#" href="'/categories'"><i class="fa fa-folder-open"></i> <span>Categories</span></a></li>
+            <li><Link to="/batch"><i class="fa fa-folder-open"></i> <span>User Batches</span></Link></li>
             <li><a href="#" href="'/products'"><i class="fa fa-file"></i> <span>Products</span></a></li>
             <li><a href="#" href="'/orders'"><i class="fa fa-cart-arrow-down"></i> <span>Orders</span></a></li>
             <li><a href="#" href="'/customers'"><i class="fa fa-smile-o"></i> <span>Customers</span></a></li>

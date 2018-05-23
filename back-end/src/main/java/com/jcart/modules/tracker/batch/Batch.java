@@ -1,6 +1,6 @@
 package com.jcart.modules.tracker.batch;
 
-import com.jcart.modules.tracker.status.Status;
+import com.jcart.modules.tracker.branch.Branch;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,17 +18,17 @@ public class Batch {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "status_id", referencedColumnName = "id")
-    private Status status;
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    private Branch branch;
 
     public Batch() {
     }
 
-    public Batch(String name, String description, Status status) {
+    public Batch(String name, String description, Branch branch) {
         super();
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.branch = branch;
     }
 
 }
