@@ -8,13 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Data
 @Table(name="permissions")
 public class Permission
 {
-	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 
 	private String name;

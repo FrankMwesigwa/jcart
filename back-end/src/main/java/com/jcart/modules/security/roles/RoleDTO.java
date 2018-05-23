@@ -11,7 +11,6 @@ public class RoleDTO {
     private Long id;
     private String name;
     private String description;
-    private Set<Long> permId;
     private Set<String> permissions;
 
     public RoleDTO(){}

@@ -43,27 +43,27 @@ public class RoleController {
     }
 
     @PostMapping("/roles")
-    public ResponseEntity<?> createRole(@Valid @RequestBody RoleDTO roleDTO) {
+    public ResponseEntity<?> createRole(@Valid @RequestBody Role role) {
 
-        Role roleByName = roleRepository.findByName(roleDTO.getName());
+        Role roleByName = roleRepository.findByName(role.getName());
         if(roleByName != null){
-            throw new JCartException("Role "+roleDTO.getName()+" already exists");
+            throw new JCartException("Role "+role.getName()+" already exists");
         }
 
-        //Set<Permission> PermissionList = new HashSet<>();
-        Role role = new Role();
+        role.setName(role.getName());
+        role.setDescription(role.getDescription());
 
-        role.setName(roleDTO.getName());
-        role.setDescription(roleDTO.getDescription());
-
-        //if (roleDTO.getPermissions() != null) {
-            //for (Long permId : roleDTO.getPermissions()) {
-                //Permission perm = permissionRepository.getOne(permId);
-                //PermissionList.add(perm);
-            //}
-            //role.setPermissions(PermissionList);
-        //}
-
+        Set<Permission> persistedPermissions = new HashSet<>();
+        Set<Permission> permissions = role.getPermissions();
+        if(permissions != null){
+            for (Permission permission : permissions) {
+                if(permission.getId() != null)
+                {
+                    persistedPermissions.add(permissionRepository.getOne(permission.getId()));
+                }
+            }
+        }
+        role.setPermissions(persistedPermissions);
         Role result = roleRepository.save(role);
 
         URI location = ServletUriComponentsBuilder
