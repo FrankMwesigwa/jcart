@@ -15,9 +15,9 @@ public class BranchService {
         return branchRepository.getOne(id);
     }
 
-    public Branch findByName(String name) {
-        return branchRepository.findBybranchName(name);
-    }
+    //public Branch findByName(String name) {
+        //return branchRepository.findBybranchName(name);
+    //}
 
     public void saveBranch(Branch branch) {
         branchRepository.save(branch);
@@ -39,7 +39,7 @@ public class BranchService {
         return branchRepository.findAll();
     }
 
-    public boolean isBranchExist(Branch branch) {
-        return findByName(branch.getBranchName()) != null;
-    }
+    //public boolean isBranchExist(Branch branch) {
+        //return findByName(branch.getBranchname()) != null;
+    //}
 }

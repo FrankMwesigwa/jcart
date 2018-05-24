@@ -18,17 +18,7 @@ public class Batch {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    @JoinColumn(name = "branchid", referencedColumnName = "id")
     private Branch branch;
-
-    public Batch() {
-    }
-
-    public Batch(String name, String description, Branch branch) {
-        super();
-        this.name = name;
-        this.description = description;
-        this.branch = branch;
-    }
 
 }

@@ -50,7 +50,7 @@ class BatchList extends Component {
 						<h3 class="box-title">User Batch List</h3>
 						<div class="box-tools">
 							<div class="input-group" style={{width:'150px'}}>
-                            <Link to="/roles/new" class="btn btn-sm btn-default">
+                            <Link to="/batch/new" class="btn btn-sm btn-default">
                                 <i class="fa fa-plus-circle"></i> New Batch
                             </Link>
 							</div>
@@ -73,7 +73,7 @@ class BatchList extends Component {
                           <td>{batch.id}</td>
                           <td>{batch.description}</td>
                           <td>{batch.name}</td>
-                          <td>{batch.branch.branchName}</td>
+                          <td>{batch.branch.branchname}</td>
                           <td><Link class="btn btn-sm btn-default" to={`/batch/${batch.id}`}><i class="fa fa-edit"></i>Edit</Link>
                           </td>
                         </tr>

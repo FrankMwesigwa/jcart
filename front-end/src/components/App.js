@@ -14,6 +14,7 @@ import UsersList from './security/users/UsersList';
 import CreateUser from './security/users/CreateUser';
 
 import BatchList from './modules/batch/BatchList';
+import AddBatch from './modules/batch/AddBatch';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
               <Route exact path="/roles"  component={RolesList}/>
               <Route exact path="/users"  component={UsersList}/>
               <Route exact path="/batch"  component={BatchList}/>
+              <Route exact path="/batch/new"  component={AddBatch}/>
               <Redirect from="/" to="/home"/>
             </Switch>
           </div>

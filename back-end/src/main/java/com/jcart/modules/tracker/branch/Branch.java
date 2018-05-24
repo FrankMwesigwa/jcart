@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "branches")
+@Table(name = "branch")
 public class Branch {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
 
-    private String branchName;
+    private String branchname;
     private String description;
 
     public Branch() {
