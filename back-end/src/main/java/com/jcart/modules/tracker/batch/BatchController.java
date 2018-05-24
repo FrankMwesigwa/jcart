@@ -1,6 +1,5 @@
 package com.jcart.modules.tracker.batch;
 
-import com.jcart.modules.tracker.branch.Branch;
 import com.jcart.modules.tracker.branch.BranchDTO;
 import com.jcart.modules.tracker.branch.BranchRepository;
 import com.jcart.modules.utilities.ApiResponse;
@@ -24,8 +23,8 @@ public class BatchController {
     }
 
     @GetMapping("/batch")
-    public List<BatchDTO> getAll() {
-        return batchRepository.retrieveBatchAsDTO();
+    public List<BatchResponse> getAll() {
+        return batchRepository.retrieveBatchResponse();
     }
 
     @GetMapping("/batch/branches")
@@ -35,13 +34,12 @@ public class BatchController {
 
     @PostMapping("/batch")
     public ResponseEntity<?> createBatch(@Valid @RequestBody BatchDTO batchDetails) {
-        Batch batch = new Batch();
 
-        Branch branchId = branchRepository.getOne(batchDetails.getBranch().getId());
+        Batch batch = new Batch();
 
         batch.setName(batchDetails.getName());
         batch.setDescription(batchDetails.getDescription());
-        batch.setBranch(branchId);
+        batch.setBranch(branchRepository.getOne(batchDetails.getBranch()));
 
         Batch result = batchRepository.save(batch);
 

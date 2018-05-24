@@ -1,23 +1,23 @@
 package com.jcart.modules.tracker.batch;
 
+import com.jcart.modules.tracker.branch.Branch;
 import lombok.Data;
 
 @Data
-public class BatchDTO {
+public class BatchResponse {
 
     private Long id;
-    private Long branch;
+    private Branch branch;
     private String name;
     private String description;
 
-    public BatchDTO() {
+    public BatchResponse() {
     }
 
-    public BatchDTO(Long id, Long branch, String name, String description) {
+    public BatchResponse(Long id, Branch branch, String name, String description) {
         this.id = id;
         this.branch = branch;
         this.name = name;
         this.description = description;
     }
-
 }

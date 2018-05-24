@@ -11,7 +11,7 @@ class AddBatch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      permissions: []
+        branches: []
     };
   }
 
@@ -80,7 +80,7 @@ errorMessage() {
 					<div class="form-group">
 						<label>Branches</label>
 						<div>
-                        <Field name="branches" component="select" class="form-control">
+                        <Field name="branch" component="select" class="form-control">
                             {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.branchname}</option>)}
                         </Field>
 						</div>	
