@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import Multiselect from 'react-widgets/lib/Multiselect'
-import 'react-widgets/dist/css/react-widgets.css'
-
 import {connect} from 'react-redux'
 import { addBatch, getBranches } from '../../../actions/BatchActions';
 
@@ -85,13 +82,15 @@ errorMessage() {
                         </Field>
 						</div>	
     				</div>
+
+
     				
-					<div class="box-footer">
+					  <div class="box-footer">
 	                    <button type="submit" class="btn btn-primary">Submit</button>
 	                </div>
                   </form>
                 </div>
-              </div>
+            </div>
 
   </section>
 </div>
