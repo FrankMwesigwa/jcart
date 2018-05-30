@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService
 		if(user == null){
 			throw new UsernameNotFoundException("Email "+email+" not found");
 		}
-		return AuthenticatedUser.create(user);
+		return UserPrincipal.create(user);
 	}
 
 	@Transactional
@@ -35,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService
 		if(user == null){
 			throw new UsernameNotFoundException("Id "+id+" not found");
 		}
-		return AuthenticatedUser.create(user);
+		return UserPrincipal.create(user);
 	}
 
 }

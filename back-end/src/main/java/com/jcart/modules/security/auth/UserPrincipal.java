@@ -13,7 +13,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
-public class AuthenticatedUser implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
     private Long id;
     private String username;
@@ -21,7 +21,7 @@ public class AuthenticatedUser implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public AuthenticatedUser(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -29,9 +29,9 @@ public class AuthenticatedUser implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static AuthenticatedUser create(User user) {
+    public static UserPrincipal create(User user) {
 
-        return new AuthenticatedUser(
+        return new UserPrincipal(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),

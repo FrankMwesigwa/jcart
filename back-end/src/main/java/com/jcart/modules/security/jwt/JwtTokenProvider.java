@@ -1,6 +1,6 @@
 package com.jcart.modules.security.jwt;
 
-import com.jcart.modules.security.auth.AuthenticatedUser;
+import com.jcart.modules.security.auth.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication) {
 
-        AuthenticatedUser userDetails = (AuthenticatedUser) authentication.getPrincipal();
+        UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux'
+import { addBatch, getBranches } from '../../../actions/BatchActions';
 
 class BatchArray extends Component {
 
@@ -11,10 +12,20 @@ class BatchArray extends Component {
     };
   }
 
+  submit = (values) => {
+    this.props.dispatch(addBatch(values, this.props.history));
+}
+
 
   render() {
 
-    const { handleSubmit, pristine, reset, submitting ,loading } = this.props;
+    const { handleSubmit, pristine, reset, submitting ,loading, errorMessage , branches } = this.props;
+
+    if (errorMessage) {
+        return <div className="error-message">
+            <p>Error! {errorMessage}</p>
+        </div>;
+      }
 
     if (loading) {
         return <div className="info-message">
@@ -43,22 +54,22 @@ class BatchArray extends Component {
                 <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Minimal</label>
-                        <Field name={`${account}.firstName`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
+                        <label>Account Number</label>
+                        <Field name={`${account}.accountName`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Disabled</label>
-                        <Field name={`${account}.lastName`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
+                        <label>Account Name</label>
+                        <Field name={`${account}.accountNo`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Multiple</label>
-                        <Field name={`${account}.firstName`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
+                        <label>Client Code</label>
+                        <Field name={`${account}.clientCode`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Disabled Result</label>
-                        <Field name={`${account}.lastName`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
+                        <label>Account Type</label>
+                        <Field name={`${account}.accountType`} component="input" type="text" placeholder="Enter Role Name" class="form-control" />
                     </div>
                 </div>
                 </div>
@@ -86,29 +97,33 @@ class BatchArray extends Component {
   <div class="box box-warning">
     <div class="box-header with-border"><h3 class="box-title">Create New Batch</h3></div>
         <div class="box-body">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(this.submit.bind(this))}>
 
                 <div class="box-body">
                 <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Minimal</label>
-                        <Field name="name" component="input" type="text" class="form-control" />
+                        <label>Branchs</label>
+                        <Field name="branchx" component="input" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>Disabled</label>
+                        <label>Description</label>
                         <Field name="description" component="input" type="text" class="form-control"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Multiple</label>
-                        <Field name="description" component="input" type="text" class="form-control"/>
+                        <label>Name</label>
+                        <Field name="name" component="input" type="text" class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label>Disabled Result</label>
-                        <Field name="description" component="input" type="text" class="form-control"/>
-                    </div>
+						<label>Branches</label>
+						<div>
+                        <Field name="branch" component="select" class="form-control">
+                            {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.branchname}</option>)}
+                        </Field>
+						</div>	
+    				</div>
                 </div>
                 </div>
                 <FieldArray name="accounts" component={renderAccounts} />
@@ -129,7 +144,10 @@ class BatchArray extends Component {
 
 const mapStateToProps = state => {
     return {
-      loading: state.batch.loading
+      loading: state.batch.loading,
+      branches: state.batch.branches,
+      errorMessage: state.batch.error,
+      addBatch: state.batch.addBatch
       };
   }
 
