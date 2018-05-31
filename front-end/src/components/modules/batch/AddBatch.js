@@ -128,7 +128,7 @@ errorMessage() {
 					<div class="form-group"><label>Branch</label>
               <div>
                   <Field name="branch" component="select" class="form-control">
-                      {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.branchname}</option>)}
+                      {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.name}</option>)}
                   </Field>
 					    </div>	
     			</div>

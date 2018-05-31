@@ -21,4 +21,5 @@ public class BranchDTO {
         this.id = id;
         this.name = name;
     }
+
 }

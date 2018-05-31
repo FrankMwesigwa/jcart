@@ -79,18 +79,18 @@ public class BatchController {
         batch.setName(batchDetails.getName());
         batch.setBatchStatus("Open");
         batch.setDescription(batchDetails.getDescription());
-        batch.setBranch(branchRepository.getOne(batchDetails.getBranch().getId()));
-        batch.setStatus(statusRepository.getOne(batchDetails.getStatus().getId()));
+        batch.setBranch(branchRepository.getOne(batchDetails.getBranch()));
+        batch.setStatus(statusRepository.getOne(batchDetails.getStatus()));
 
         Batch result = batchRepository.save(batch);
 
-        batchDetails.getAccounts().forEach(accountDTO -> {
+        batchDetails.getAccounts().forEach(accountDTO ->
         batch.addAccount(new Account(
                 accountDTO.getAccountName(),
                 accountDTO.getAccountNo(),
                 accountDTO.getClientCode(),
-                accountDTO.getAccountType()));
-    });
+                accountDTO.getAccountType()))
+    );
 
     Tran transactions = new Tran();
         transactions.setBatchId(batch.getId());

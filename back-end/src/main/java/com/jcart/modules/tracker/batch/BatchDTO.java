@@ -13,8 +13,9 @@ public class BatchDTO {
     private String name;
     private String batchStatus;
     private String description;
-    private Branch branch;
-    private TrackerStatus status;
+    private Long branch;
+    private Long status;
+    private String branchName;
     private List<Account> accounts;
 
     public BatchDTO(){}
@@ -25,13 +26,14 @@ public class BatchDTO {
                 batch.getName(),
                 batch.getBatchStatus(),
                 batch.getDescription(),
-                batch.getBranch(),
-                batch.getStatus()
+                batch.getBranch().getId(),
+                batch.getStatus().getId(),
+                batch.getBranch().getName()
         );
     }
 
     public BatchDTO(Long id, String name, String batchStatus, String description,
-                    Branch branch,TrackerStatus status) {
+                    Long branch,Long status,String branchName) {
 
         this.id = id;
         this.name = name;
@@ -39,6 +41,7 @@ public class BatchDTO {
         this.description = description;
         this.branch = branch;
         this.status = status;
+        this.branchName = branchName;
 
     }
 

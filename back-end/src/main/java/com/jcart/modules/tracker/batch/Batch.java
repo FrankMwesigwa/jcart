@@ -28,19 +28,14 @@ public class Batch extends UserDateAudit {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "branchid", referencedColumnName = "id")
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
 
     @ManyToOne
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     private TrackerStatus status;
 
-    @OneToMany(
-            mappedBy = "batch",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "batch", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
     private List<Account> accounts = new ArrayList<>();
 
