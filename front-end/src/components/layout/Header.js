@@ -11,7 +11,7 @@ class Header extends Component {
 
         <a href="#" href="{/home}" class="logo">
           <span class="logo-mini"><b>JC</b></span>
-          <span class="logo-lg"><b>JCart Admin</b></span>
+          <span class="logo-lg"><b>e-Tracker</b></span>
         </a>
 
       <nav class="navbar navbar-static-top" role="navigation">

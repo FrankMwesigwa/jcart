@@ -16,9 +16,11 @@ public class Tran {
 
     private Date createdDate;
     private String createdBy;
-    private String status;
     private String comments;
 
     @Column(name="batch_id")
     private Long batchId;
+
+    @Column(name="status_id")
+    private Long statusId;
 }

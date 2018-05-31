@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux'
-import { addBatch, getBranches } from '../../../actions/BatchActions';
+import { addBatch, getBranches, getStatus } from '../../../actions/BatchActions';
 
 class AddBatch extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        branches: []
+        branches: [],
+        status: []
     };
   }
 
@@ -18,6 +19,7 @@ class AddBatch extends Component {
 
 componentDidMount() {
   this.props.dispatch(getBranches());
+  this.props.dispatch(getStatus());
 }
 
 errorMessage() {
@@ -31,7 +33,7 @@ errorMessage() {
 }
 
   render() {
-    const {handleSubmit, loading, errorMessage , branches } = this.props;
+    const {handleSubmit, pristine, reset, submitting ,loading, errorMessage , branches, status } = this.props;
     
     if (errorMessage) {
       return <div className="error-message">
@@ -44,6 +46,55 @@ errorMessage() {
           <p>Loading...</p>
       </div>;
     }
+    
+    const renderAccounts = ({ fields, meta: { error, submitFailed } }) => (
+      <ul >
+        <li>
+          <button type="button" onClick={() => fields.push({})} class="btn btn-success">Add Account Details</button>
+          {submitFailed && error && <span>{error}</span>}
+        </li>
+        {fields.map((account, index) => (
+  <li key={index}>
+      <div class="box box-default">
+              <div class="box-header with-border">
+                  <h3 class="box-title">Account : {index + 1}</h3>
+
+              <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+              </div>
+              </div>
+
+          <div class="box-body">
+              <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Account Name</label>
+                      <Field name={`${account}.accountName`} component="input" type="text" placeholder="Account Name" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                      <label>Account Number</label>
+                      <Field name={`${account}.accountNo`} component="input" type="text" placeholder="Account Number" class="form-control" />
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Client Code</label>
+                      <Field name={`${account}.clientCode`} component="input" type="text" placeholder="Enter Client Code" class="form-control" />
+                  </div>
+                  <div class="form-group">
+                      <label>Account Type</label>
+                      <Field name={`${account}.accountType`} component="input" type="text" placeholder="Enter Account Type" class="form-control" />
+                  </div>
+              </div>
+              </div>
+        </div>
+          <div class="box-footer">
+              <button type="button" title="Remove Account" class="btn btn-danger" onClick={() => fields.remove(index)}>Remove Account</button>
+          </div>
+      </div>   
+</li>))}
+</ul>
+)
     return (
       <div>
 
@@ -64,30 +115,39 @@ errorMessage() {
                 <form onSubmit={handleSubmit(this.submit.bind(this))}>
 
                     <div class="form-group">
-                      <label>Name</label>
-                      <Field name="name" component="input" type="text" placeholder="Enter Role Name" class="form-control"/>
+                      <label>Batch Name</label>
+                      <Field name="name" component="input" type="text" placeholder="Enter Batch Name" class="form-control"/>
                       
                     </div>
                     
                     <div class="form-group">
-                      <label>Description</label>
-                      <Field name="description" component="input" type="textarea" placeholder="Enter Role Description" class="form-control"/>
+                      <label>Batch Description</label>
+                      <Field name="description" component="input" type="textarea" placeholder="Enter Batch Description" class="form-control"/>
                     </div>
 					
-					<div class="form-group">
-						<label>Branches</label>
-						<div>
-                        <Field name="branch" component="select" class="form-control">
-                            {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.branchname}</option>)}
-                        </Field>
-						</div>	
-    				</div>
+					<div class="form-group"><label>Branch</label>
+              <div>
+                  <Field name="branch" component="select" class="form-control">
+                      {branches.map(branch => <option value={branch.id} key={branch.id}>{branch.branchname}</option>)}
+                  </Field>
+					    </div>	
+    			</div>
+
+          <div class="form-group"><label>Status</label>
+              <div>
+                  <Field name="status" component="select" class="form-control">
+                      {status.map(s => <option value={s.id} key={s.id}>{s.name}</option>)}
+                  </Field>
+					    </div>	
+    			</div>
 
 
-    				
+
+            <FieldArray name="accounts" component={renderAccounts} />
 					  <div class="box-footer">
-	                    <button type="submit" class="btn btn-primary">Submit</button>
-	                </div>
+                  <button type="submit" disabled={submitting} class="btn btn-primary">Save Batch</button>
+                  <button type="button" disabled={pristine || submitting} onClick={reset} class="btn btn-primary">Clear Batch</button>
+	          </div>
                   </form>
                 </div>
             </div>
@@ -102,10 +162,11 @@ const mapStateToProps = state => {
   return {
     loading: state.batch.loading,
     branches: state.batch.branches,
+    status: state.batch.status,
     errorMessage: state.batch.error,
     addBatch: state.batch.addBatch
     };
 }
 
-const reduxFormBatch = reduxForm({form: 'newRole'})(AddBatch);
-export default connect(mapStateToProps)(reduxFormBatch);
+const formAddBatch = reduxForm({form: 'addBatch'})(AddBatch);
+export default connect(mapStateToProps)(formAddBatch);

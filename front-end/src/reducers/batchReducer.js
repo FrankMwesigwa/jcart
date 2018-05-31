@@ -1,6 +1,7 @@
 const initialState = {
     batches: [],
     branches: [],
+    status: [],
     addbatch:null,
     loading: false,
     error: false
@@ -22,6 +23,9 @@ export default function (state = initialState, action) {
       }
       case "GET_BRANCHES": {
         return {...state, loading : false, branches : action.payload,}
+      }
+      case "GET_STATUS": {
+        return {...state, loading : false, status : action.payload,}
       }
           
     }

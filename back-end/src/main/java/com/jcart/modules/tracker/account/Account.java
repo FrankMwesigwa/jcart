@@ -1,16 +1,13 @@
 package com.jcart.modules.tracker.account;
 
-import lombok.AllArgsConstructor;
+import com.jcart.modules.tracker.batch.Batch;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Table(name = "accounts")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Account {
 
     @Id
@@ -22,7 +19,19 @@ public class Account {
     private String clientCode;
     private String accountType;
 
-    @Column(name="batch_id")
-    private Long batchId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batch_id", nullable = false)
+    private Batch batch;
+
+    public Account() {
+
+    }
+
+    public Account(String accountName , String accountNo, String clientCode, String accountType) {
+        this.accountName = accountName;
+        this.accountNo = accountNo;
+        this.clientCode = clientCode;
+        this.accountType = accountType;
+    }
 
 }

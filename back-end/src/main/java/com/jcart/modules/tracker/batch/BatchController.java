@@ -6,6 +6,8 @@ import com.jcart.modules.tracker.account.Account;
 import com.jcart.modules.tracker.account.AccountRepository;
 import com.jcart.modules.tracker.branch.BranchDTO;
 import com.jcart.modules.tracker.branch.BranchRepository;
+import com.jcart.modules.tracker.status.TrackerResponse;
+import com.jcart.modules.tracker.status.TrackerStatusRepository;
 import com.jcart.modules.utilities.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +21,16 @@ import java.util.*;
 public class BatchController {
 
     private BatchRepository batchRepository;
-    private AccountRepository accountRepository;
     private BranchRepository branchRepository;
     private TranRepository tranRepository;
+    private TrackerStatusRepository statusRepository;
 
     public BatchController(BatchRepository batchRepository , BranchRepository branchRepository,
-                           AccountRepository accountRepository ,TranRepository tranRepository) {
+                           TranRepository tranRepository, TrackerStatusRepository statusRepository) {
         this.batchRepository = batchRepository;
         this.branchRepository = branchRepository;
-        this.accountRepository = accountRepository;
         this.tranRepository = tranRepository;
+        this.statusRepository = statusRepository;
     }
 
     @GetMapping("/batch")
@@ -41,35 +43,36 @@ public class BatchController {
         return branchRepository.retrieveBranchDTO();
     }
 
+    @GetMapping("/batch/status")
+    public List<TrackerResponse> getStatus() {
+        return statusRepository.getTrackerResponse();
+    }
+
     @PostMapping("/batch")
     public ResponseEntity<?> createBatch(@Valid @RequestBody BatchDTO batchDetails) {
 
-        Batch savebatch = new Batch();
+        Batch batch = new Batch();
 
-        savebatch.setName(batchDetails.getName());
-        savebatch.setDescription(batchDetails.getDescription());
-        savebatch.setBranch(branchRepository.getOne(batchDetails.getBranch()));
+        batch.setName(batchDetails.getName());
+        batch.setBatchStatus("Open");
+        batch.setDescription(batchDetails.getDescription());
+        batch.setBranch(branchRepository.getOne(batchDetails.getBranch()));
+        batch.setStatus(statusRepository.getOne(batchDetails.getStatus()));
 
-        Batch result = batchRepository.save(savebatch);
-        Set<Account> accounts = new HashSet<>();
+        Batch result = batchRepository.save(batch);
 
-        if (batchDetails.getAccounts() != null) {
-            for (Account account : batchDetails.getAccounts()) {
-                Account acnt = new Account();
-                acnt.setBatchId(savebatch.getId());
-                acnt.setAccountName(account.getAccountName());
-                acnt.setAccountNo(account.getAccountNo());
-                acnt.setAccountType(account.getAccountType());
-                acnt.setClientCode(account.getClientCode());
-
-                accounts.add(acnt);
-                accountRepository.save(account);
-            }
-        }
+        batchDetails.getAccounts().forEach(accountRequest -> {
+            batch.addAccount(new Account(
+                    accountRequest.getAccountName(),
+                    accountRequest.getAccountNo(),
+                    accountRequest.getClientCode(),
+                    accountRequest.getAccountType()));
+        });
 
         Tran transactions = new Tran();
-        transactions.setBatchId(savebatch.getId());
+        transactions.setBatchId(batch.getId());
         transactions.setCreatedDate(new Date());
+        transactions.setStatusId(batch.getStatus().getId());
         transactions.setCreatedBy("Frank");
         transactions.setComments("initial request");
         tranRepository.save(transactions);

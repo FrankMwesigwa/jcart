@@ -4,10 +4,14 @@ import com.jcart.modules.security.users.audit.UserDateAudit;
 import com.jcart.modules.tracker.Tran.Tran;
 import com.jcart.modules.tracker.account.Account;
 import com.jcart.modules.tracker.branch.Branch;
+import com.jcart.modules.tracker.status.TrackerStatus;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,16 +24,32 @@ public class Batch extends UserDateAudit {
     private Long id;
 
     private String name;
+    private String batchStatus;
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "branchid", referencedColumnName = "id")
     private Branch branch;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "batchId")
-    private Set<Account> accounts;
+    @ManyToOne
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
+    private TrackerStatus status;
+
+    @OneToMany(
+            mappedBy = "batch",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    @Fetch(FetchMode.SELECT)
+    private List<Account> accounts = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "batchId")
-    private Set<Tran> trans;
+    private List<Tran> trans;
+
+    public void addAccount(Account account) {
+        accounts.add(account);
+        account.setBatch(this);
+    }
 
 }

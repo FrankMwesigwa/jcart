@@ -35,7 +35,7 @@ class BatchList extends Component {
       <div>
 
     <section class="content-header">
-      <h1>Roles Management</h1>
+      <h1>Batch Management</h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> security</a></li>
         <li class="active">Batches:</li>
@@ -61,9 +61,9 @@ class BatchList extends Component {
 						<thead>
 							<tr>
 								<th>Id</th>
+                <th>Name</th>
 								<th>Description</th>
-								<th>Name</th>
-                                <th>Branch</th>
+                <th>Branch</th>
 							</tr>
 							</thead>
 							<tbody> 
@@ -71,8 +71,8 @@ class BatchList extends Component {
                         batches.map(batch => (
                         <tr key={batch.id}>
                           <td>{batch.id}</td>
-                          <td>{batch.description}</td>
                           <td>{batch.name}</td>
+                          <td>{batch.description}</td>
                           <td>{batch.branch.branchname}</td>
                           <td><Link class="btn btn-sm btn-default" to={`/batch/${batch.id}`}><i class="fa fa-edit"></i>Edit</Link>
                           </td>

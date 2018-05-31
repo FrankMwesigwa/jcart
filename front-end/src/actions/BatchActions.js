@@ -45,3 +45,17 @@ export const getBranches = () => {
             } );
     };
 };
+
+export const getStatus = () => {
+    return dispatch => {
+        axios.get(`${URL}/batch/status`, {
+            headers: {"Authorization": `${TOKEN}`}
+        })
+            .then( response => {
+               dispatch({type: "GET_STATUS", payload: response.data})
+            } )
+            .catch( error => {
+                dispatch({type: "FAILED_BATCH", payload: error})
+            } );
+    };
+};
