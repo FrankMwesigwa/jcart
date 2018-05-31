@@ -38,8 +38,7 @@ public class BranchController {
         Branch branch = branchRepository.findById(branchId)
                 .orElseThrow(() -> new ResourceNotFoundException("Branch", "id", branchId));
 
-        branch.setBranchname(branchDetails.getBranchname());
-        branch.setDescription(branchDetails.getDescription());
+        branch.setName(branchDetails.getName());
 
         Branch updatedNote = branchRepository.save(branch);
         return updatedNote;

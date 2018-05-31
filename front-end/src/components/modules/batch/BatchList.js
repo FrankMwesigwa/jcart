@@ -73,8 +73,8 @@ class BatchList extends Component {
                           <td>{batch.id}</td>
                           <td>{batch.name}</td>
                           <td>{batch.description}</td>
-                          <td>{batch.branch.branchname}</td>
-                          <td><Link class="btn btn-sm btn-default" to={`/batch/${batch.id}`}><i class="fa fa-edit"></i>Edit</Link>
+                          <td>{batch.branch.name}</td>
+                          <td><Link class="btn btn-sm btn-default" to={`/batch/${batch.id}`}><i class="fa fa-edit"></i>View Details</Link>
                           </td>
                         </tr>
                         ))

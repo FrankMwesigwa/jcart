@@ -16,6 +16,21 @@ export const getBatchList = () => {
     };
 };
 
+export const getBatch = (id) => {
+    return dispatch => {
+        dispatch({type: "LOADING_BATCH"});
+        axios.get(`${URL}/batch/${id}`, {
+            headers: {"Authorization": `${TOKEN}`}
+        })
+            .then( response => {
+               dispatch({type: "GET_BATCH", payload: response.data})
+            } )
+            .catch( error => {
+                dispatch({type: "FAILED_BATCH", payload: error})
+            } );
+    };
+};
+
 export const addBatch = (values, history) => {
     return dispatch => {
         dispatch({type: "LOADING_BATCH"});

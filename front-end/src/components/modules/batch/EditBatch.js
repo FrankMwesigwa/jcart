@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Field, FieldArray, reduxForm} from 'redux-form';
 import {connect} from 'react-redux'
-import { addBatch, getBranches, getStatus } from '../../../actions/BatchActions';
+import { getBatch, getBranches, getStatus } from '../../../actions/BatchActions';
 
-class AddBatch extends Component {
+class EditBatch extends Component {
 
   constructor(props) {
     super(props);
@@ -14,12 +14,13 @@ class AddBatch extends Component {
   }
 
   submit = (values) => {
-    this.props.dispatch(addBatch(values, this.props.history));
+    this.props.dispatch(getBatch(values, this.props.history));
 }
 
 componentDidMount() {
   this.props.dispatch(getBranches());
   this.props.dispatch(getStatus());
+  this.props.dispatch(getBatch());
 }
 
 errorMessage() {
@@ -47,54 +48,6 @@ errorMessage() {
       </div>;
     }
     
-    const renderAccounts = ({ fields, meta: { error, submitFailed } }) => (
-      <ul >
-        <li>
-          <button type="button" onClick={() => fields.push({})} class="btn btn-success">Add Account Details</button>
-          {submitFailed && error && <span>{error}</span>}
-        </li>
-        {fields.map((account, index) => (
-  <li key={index}>
-      <div class="box box-default">
-              <div class="box-header with-border">
-                  <h3 class="box-title">Account : {index + 1}</h3>
-
-              <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-              </div>
-              </div>
-
-          <div class="box-body">
-              <div class="row">
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label>Account Name</label>
-                      <Field name={`${account}.accountName`} component="input" type="text" placeholder="Account Name" class="form-control" />
-                  </div>
-                  <div class="form-group">
-                      <label>Account Number</label>
-                      <Field name={`${account}.accountNo`} component="input" type="text" placeholder="Account Number" class="form-control" />
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <label>Client Code</label>
-                      <Field name={`${account}.clientCode`} component="input" type="text" placeholder="Enter Client Code" class="form-control" />
-                  </div>
-                  <div class="form-group">
-                      <label>Account Type</label>
-                      <Field name={`${account}.accountType`} component="input" type="text" placeholder="Enter Account Type" class="form-control" />
-                  </div>
-              </div>
-              </div>
-        </div>
-          <div class="box-footer">
-              <button type="button" title="Remove Account" class="btn btn-danger" onClick={() => fields.remove(index)}>Remove Account</button>
-          </div>
-      </div>   
-</li>))}
-</ul>
-)
     return (
       <div>
 
@@ -109,7 +62,7 @@ errorMessage() {
   <section class="content container-fluid">
   <div class="box box-warning">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Create New Batch</h3>
+                  <h3 class="box-title">Edit Batch Details</h3>
                 </div>
                 <div class="box-body">
                 <form onSubmit={handleSubmit(this.submit.bind(this))}>
@@ -141,7 +94,6 @@ errorMessage() {
 					    </div>	
     			</div>
 
-            <FieldArray name="accounts" component={renderAccounts} />
 					  <div class="box-footer">
                   <button type="submit" disabled={submitting} class="btn btn-primary">Save Batch</button>
                   <button type="button" disabled={pristine || submitting} onClick={reset} class="btn btn-primary">Clear Batch</button>
@@ -166,5 +118,5 @@ const mapStateToProps = state => {
     };
 }
 
-const formAddBatch = reduxForm({form: 'addBatch'})(AddBatch);
+const formAddBatch = reduxForm({form: 'editBatch'})(EditBatch);
 export default connect(mapStateToProps)(formAddBatch);

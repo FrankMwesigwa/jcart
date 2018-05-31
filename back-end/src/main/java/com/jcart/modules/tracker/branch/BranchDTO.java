@@ -6,13 +6,19 @@ import lombok.Data;
 public class BranchDTO {
 
     private Long id;
-    private String branchname;
+    private String name;
 
-    public BranchDTO() {
+    public BranchDTO(){}
+
+    public BranchDTO (Branch branch) {
+        this(
+                branch.getId(),
+                branch.getName()
+        );
     }
 
-    public BranchDTO(Long id, String branchname) {
+    public BranchDTO(Long id, String name) {
         this.id = id;
-        this.branchname = branchname;
+        this.name = name;
     }
 }

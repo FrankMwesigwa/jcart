@@ -10,13 +10,9 @@ import javax.persistence.*;
 public class Branch {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    private String branchname;
-    private String description;
-
-    public Branch() {
-    }
+    private String name;
 
 }

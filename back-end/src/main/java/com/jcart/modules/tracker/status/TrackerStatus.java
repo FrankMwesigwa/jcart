@@ -12,10 +12,4 @@ public class TrackerStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    public TrackerStatus() {
-    }
-
-
-
 }
